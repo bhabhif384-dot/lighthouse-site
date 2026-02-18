@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lighting House - Skill Institute</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            overflow-x: hidden;
+        }
+        .particle {
+            position: absolute;
+            background: #00ffff;
+            border-radius: 50%;
+            animation: float 10s infinite linear;
+            opacity: 0.7;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        .scanning-beam {
+            position: absolute;
+            top: 50%;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+            animation: scan 5s infinite linear;
+            z-index: 1;
+        }
+        @keyframes scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        .lighthouse {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            margin: 0 auto;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDIwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZmZmZmZmIi8+CjxjaXJjbGUgY3g9IjEwMCIgY3k9IjUwIiByPSIyMCIgZmlsbD0iIzAwZmZmZiIvPgo8L3N2Zz4=') no-repeat center;
+            background-size: contain;
+        }
+        .beam {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            width: 2px;
+            height: 200px;
+            background: #ffff00;
+            transform-origin: top center;
+            animation: rotate-beam 3s infinite linear;
+            box-shadow: 0 0 10px #ffff00;
+        }
+        @keyframes rotate-beam {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .hero-title {
+            font-size: 3rem;
+            color: #00ffff;
+            text-shadow: 0 0 20px #00ffff;
+            margin-bottom: 1rem;
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #ffff00;
+            text-shadow: 0 0 10px #ffff00;
+        }
+        .course-card {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #00ffff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+        .course-card:hover {
+            box-shadow: 0 0 30px #00ffff;
+            transform: scale(1.05);
+        }
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #00ffff;
+            border-radius: 5px;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .form-button {
+            width: 100%;
+            padding: 0.75rem;
+            background: #00ffff;
+            border: none;
+            border-radius: 5px;
+            color: #000;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .form-button:hover {
+            background: #ffff00;
+        }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .lighthouse { width: 150px; height: 225px; }
+            .grid { grid-template-columns: 1fr; }
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        section {
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .courses-section {
+            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 100%);
+        }
+        .form-section {
+            background: rgba(0, 0, 0, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Particles -->
+    <div id="particles" class="absolute inset-0 pointer-events-none"></div>
+    <!-- Scanning Beam -->
+    <div class="scanning-beam"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="lighthouse mb-8">
+            <div class="beam"></div>
+        </div>
+        <h1 class="hero-title">Lighting House - Sab Se Alag Brand</h1>
+        <p class="hero-subtitle">Empowering Youth with Skills for Tomorrow's Jobs</p>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses-section">
+        <h2 class="text-3xl font-bold text-center mb-12" style="color: #00ffff; text-shadow: 0 0 10px #00ffff;">Our Courses</h2>
+        <div class="grid">
+            <div class="course-card">
+                <h3 class="text-xl font-semibold text-cyan-400 mb-2">20-Day Foundation</h3>
+                <p class="text-gray-300">Build strong basics in essential skills.</p>
+            </div>
+            <div class="course-card">
+                <h3 class="text-xl font-semibold text-cyan-400 mb-2">Mobile Repairing 45 Days</h3>
+                <p class="text-gray-300">Learn to repair and maintain mobile devices.</p>
+            </div>
+            <div class="course-card">
+                <h3 class="text-xl font-semibold text-cyan-400 mb-2">Telecom 2 Months</h3>
+                <p class="text-gray-300">Master telecommunications technology.</p>
+            </div>
+            <div class="course-card">
+                <h3 class="text-xl font-semibold text-cyan-400 mb-2">Digital Marketing 3-4 Months</h3>
+                <p class="text-gray-300">Drive online success with marketing strategies.</p>
+            </div>
+            <div class="course-card">
+                <h3 class="text-xl font-semibold text-cyan-400 mb-2">Makeup</h3>
+                <p class="text-gray-300">Professional makeup artistry skills.</p>
+            </div>
+            <div class="course-card">
+                <h3 class="text-xl font-semibold text-cyan-400 mb-2">Basic Health</h3>
+                <p class="text-gray-300">Fundamental health and wellness knowledge.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enquiry Form Section -->
+    <section class="form-section">
+        <h2 class="text-3xl font-bold text-center mb-12" style="color: #00ffff; text-shadow: 0 0 10px #00ffff;">Enquire Now</h2>
+        <form class="max-w-md mx-auto" id="enquiryForm">
+            <input type="text" id="name" class="form-input" placeholder="Your Name" required>
+            <input type="tel" id="phone" class="form-input" placeholder="Phone Number" required>
+            <select id="course" class="form-input" required>
+                <option value="">Select Course</option>
+                <option value="foundation">20-Day Foundation</option>
+                <option value="mobile">Mobile Repairing 45 Days</option>
+                <option value="telecom">Telecom 2 Months</option>
+                <option value="marketing">Digital Marketing 3-4 Months</option>
+                <option value="makeup">Makeup</option>
+                <option value="health">Basic Health</option>
+            </select>
+            <button type="submit" class="form-button">Submit Enquiry</button>
+        </form>
+    </section>
+
+    <script>
+        // Generate floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.width = Math.random() * 5 + 2 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.animationDelay = Math.random() * 10 + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Form submission
+        document.getElementById('enquiryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const course = document.getElementById('course').value;
+            alert(`Thank you, ${name}! We'll contact you at ${phone} regarding ${course}.`);
+            // In a real application, send this data to a server
+        });
+    </script>
+</body>
+</html>
